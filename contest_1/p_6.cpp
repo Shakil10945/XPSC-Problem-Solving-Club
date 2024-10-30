@@ -22,8 +22,8 @@ int main()
 
         for(int i=0; i<n;i++)
         {
-            v1[a[i]- '0'];
-            v2[b[i]-'0'];
+            v1[a[i]- '0']++;
+            v2[b[i]-'0']++;
 
             if(a[i] != b[i])    count++;
         }

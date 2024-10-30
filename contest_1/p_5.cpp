@@ -22,22 +22,27 @@ int main()
         long long int summation = 0;
         int size = 0;
 
-        for(int i=1;i<=n;i++)
+        if(accumulate(v.begin(), v.end(), 0) %2==0)    size=n;
+        else
         {
-            for(int j=0; j<=n-i; j++)
-            {
-                int s = accumulate(v.begin() + j, v.begin() +j +i , 0);
+            int left_most_odd = -1;
+            int right_most_odd = -1;
 
-                if(s%2==0 && (summation < s))
+            for(int i=0; i<n; i++)
+            {
+                if(v[i]%2 != 0)
                 {
-                    summation = s;
-                    size = i;
+                    if(left_most_odd==-1)
+                    {
+                        left_most_odd = i;
+                    }
+                    right_most_odd = i;
                 }
             }
-        }
-        cout<< size<<endl;
-        
-    }
 
+            size = max(n-left_most_odd-1 , right_most_odd);               
+        }
+        cout<<size<<endl;      
+    }
     return 0;
 }
