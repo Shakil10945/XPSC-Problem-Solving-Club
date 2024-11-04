@@ -24,8 +24,8 @@ int main()
             if(it.second == old)
             {
                 found = true;
-                auto itt = find(my_map[it.first].begin(), my_map[it.first].end(), it.second);
-                if(itt != my_map[it.first].end())
+                auto itt = find(my_map[it.first].begin(), my_map[it.first].end(),neww);
+                if(itt == my_map[it.first].end())
                 {
                     my_map[it.first].push_back(neww);
                     it.second = neww;
@@ -35,7 +35,6 @@ int main()
 
                     my_set.erase(it);
                     my_set.insert({stx,neww});
-
 
                 }
                 break;
