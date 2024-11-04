@@ -7,7 +7,8 @@ int main()
     int x,y;
     cin>>x>>y;
 
-    cout<<7-x-y<<endl;
+    if(y>=x)        cout<<x<<endl;
+    else if(y<x)       cout<<y<<endl;
     
 
     return 0;

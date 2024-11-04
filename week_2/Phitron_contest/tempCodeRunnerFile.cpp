@@ -1,0 +1,1 @@
+cout<<7-x-y<<endl;
