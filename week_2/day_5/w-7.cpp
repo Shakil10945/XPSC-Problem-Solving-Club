@@ -1,52 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
 int main()
 {
-    int t; cin>>t;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
     while (t--)
     {
-        int n, k; cin>>n>>k;
+        int n, k;
+        cin >> n >> k;
+        //cout<<k<<endl;
         multiset<char> myset;
         set<char> set;
-        for(int i=0; i<n;i++)
+        for (int i = 0; i < n; i++)
         {
-            int c;
-            cin>>c;
+            char c;
+            cin >> c;
             myset.insert(c);
             set.insert(c);
         }
 
-        int odd =0;
-        
-        for(auto &element : set)
+        int odd = 0;
+
+        for (auto &element : set)
         {
-            if(myset.count(element) %2 != 0)    odd++;
+            if (myset.count(element) % 2 != 0)
+                odd++;
         }
 
-        if(odd == 1 && k%2 == 0)        cout<<"YES"<<endl;
-        else if(odd>k)
+        //cout << odd << " " << k << " ";
+
+        if (odd == 1 && k % 2 == 0)
+            cout << "YES" << endl;
+        else if (odd >= k)
         {
-            if(odd - k == 1)        cout<< "YES"<<endl;
+            if ((odd - k) == 1 || (odd - k) == 0)
+                cout << "YES" << endl;
+
+            else
+                cout << "NO" << endl;
         }
-        else if(odd<k)
+        else if (odd < k)
         {
-            if((k- odd) %2 ==0 || (k-(odd+1))%2 == 0)       cout<<"YES"<<endl;
-
-
+            cout << "YES" << endl;
         }
-        else
-            cout<< "NO"<<endl;
-
-
-        
-
-
-        
     }
-    
-    
 
     return 0;
 }
