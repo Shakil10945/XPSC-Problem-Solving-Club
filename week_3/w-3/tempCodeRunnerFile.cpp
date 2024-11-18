@@ -1,5 +1,13 @@
-else if( vec[l] != vec[r])
+    for (int i = 0; i < n; i++)
+        {
+            for (int j = 1; j <= n; j++)
             {
-                l=r;
-                //continue;
+                if (!(vec_set[i].count(j)))
+                {
+                    cout << j << " ";
+                    break;
+                }
             }
+        }
+        cout << endl;
+    }
