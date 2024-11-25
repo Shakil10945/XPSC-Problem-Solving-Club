@@ -3,25 +3,41 @@ using namespace std;
 
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    int t;  cin>>t;
+    int t;
+    cin >> t;
     while (t--)
     {
-        int n, s;
-        cin>>n>>s;
-        vector<int>ar(n);
-        for(int i=0; i<n; i++)  cin>>ar[i];
+        int n,s; cin>>n>>s;
+        vector<int> arr(n);
+        for(int i=0; i<n ; i++)     cin>>arr[i];
 
-        long long sum = accumulate(ar.begin(), ar.end(), 0);
+        int sum = accumulate(arr.begin(), arr.end(), 0);
 
+        if(s> sum)
+        {
+            cout<<-1<<endl;
+            continue;
+        }
+
+        int l=0, r=0, current_sum = 0, min_removals= INT_MAX;
+
+        while (r <n )
+        {
+            current_sum += arr[r];
+            while (current_sum > s)
+            {
+                current_sum -= arr[l];
+                l++;
+            }
+            if(current_sum == s)
+            {
+                min_removals = min(min_removals, n-(r-l+1));
+            }
+            r++;            
+        }
+        cout<< min_removals<<endl;
         
     }
-    
-
-    
-    
 
     return 0;
 }
