@@ -12,35 +12,26 @@ int main()
     {
         int n, k;
         cin >> n >> k;
-        vector<int> x;
-        for (int i = k; i >= 1; i--)
+        vector<int> pi_mod_k;
+
+        if(k==1)
         {
-            x.push_back(i);
-        }
-        for (int i = k + 1; i <= n; i++) 
-        {
-            x.push_back(i);
+            cout<<-1<<endl;
+            continue;
         }
 
-        bool good = true;
-        for (int i = 0; i < n; i++)
+        for(int i=n; i>=1; i--)
+            pi_mod_k.push_back(i);
+        
+        for(int i=0; i<n; i++)
         {
-            if ((i + 1) % k == x[i] % k) 
-            {
-                cout << -1 << endl;
-                good = false;
-                break;
-            }
+            cout<<pi_mod_k[i]<<" ";
         }
+        cout<<endl;
+        
 
-        if (good)
-        {
-            for (int i = 0; i < n; i++)
-            {
-                cout << x[i] << " ";
-            }
-            cout << endl;
-        }
+
+
     }
 
     return 0;
