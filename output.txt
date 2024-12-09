@@ -1,6 +1,5 @@
-a e j k 
-2
-b b i o q y 
-6
-a a b d e e g m s w w x y z 
-11
+1
+1 0 1 1 0 1 
+47
+13
+61
