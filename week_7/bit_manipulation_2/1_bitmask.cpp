@@ -8,7 +8,11 @@ int main()
 
     int n;
     cin>>n;
-    // n=5;
+    vector<int> ar(n);
+    for(int i=0; i<n;i++)   cin>>ar[i];
+    cout<<"    ";
+    for(auto &it: ar)    cout<<it<<" ";
+    cout<<endl;
 
     for(int mask = 0; mask< (1<<n); mask++)
     {
@@ -16,9 +20,9 @@ int main()
         for(int k=0; k<n; k++)
         {
             if((mask >> k) &1)
-                cout<<1<<" ";
+                cout<<1<<"  ";
             else
-                cout<<0<< " ";
+                cout<<0<< "  ";
         }
         cout<<endl;
     }

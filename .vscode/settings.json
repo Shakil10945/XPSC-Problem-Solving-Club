@@ -14,6 +14,7 @@
         "forward_list": "cpp"
     },
     "launch": {
+        
         "configurations": [
             {
                 "name": "C++ Debug",
