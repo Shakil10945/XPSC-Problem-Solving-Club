@@ -12,5 +12,34 @@
         "unordered_set": "cpp",
         "vector": "cpp",
         "forward_list": "cpp"
+    },
+    "launch": {
+        "configurations": [
+            {
+                "name": "C++ Debug",
+                "type": "cppdbg",
+                "request": "launch",
+                "program": "${workspaceFolder}/${fileBasenameNoExtension}.exe",
+                "args": [
+                    "<", "E:/XPSC-Problem-Solving-Club/input.txt",
+                    ">", "E:/XPSC-Problem-Solving-Club/output.txt"
+                ],
+                "cwd": "${workspaceFolder}",
+                "console": "integratedTerminal",
+                "stopAtEntry": false,
+                "MIMode": "gdb",
+                "miDebuggerPath": "path_to_your_gdb", // Replace with actual gdb path
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ],
+                "environment": [],
+                "externalConsole": false
+            }
+        ],
+        "compounds": []
     }
 }
