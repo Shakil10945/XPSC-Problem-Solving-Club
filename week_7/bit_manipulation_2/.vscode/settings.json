@@ -1,49 +1,4 @@
 {
-  "files.associations": {
-    "sstream": "cpp",
-    "regex": "cpp",
-    "ostream": "cpp",
-    "iostream": "cpp",
-    "deque": "cpp",
-    "*.tcc": "cpp",
-    "list": "cpp",
-    "string": "cpp",
-    "unordered_map": "cpp",
-    "unordered_set": "cpp",
-    "vector": "cpp",
-    "forward_list": "cpp"
-  },
-  "launch": {
-    "configurations": [
-      {
-        "name": "C++ Debug",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/${fileBasenameNoExtension}.exe",
-        "args": [
-          "<",
-          "E:/XPSC-Problem-Solving-Club/input.txt",
-          ">",
-          "E:/XPSC-Problem-Solving-Club/output.txt"
-        ],
-        "cwd": "${workspaceFolder}",
-        "console": "integratedTerminal",
-        "stopAtEntry": false,
-        "MIMode": "gdb",
-        "miDebuggerPath": "path_to_your_gdb",
-        "setupCommands": [
-          {
-            "description": "Enable pretty-printing for gdb",
-            "text": "-enable-pretty-printing",
-            "ignoreFailures": true
-          }
-        ],
-        "environment": [],
-        "externalConsole": false
-      }
-    ],
-    "compounds": []
-  },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",
