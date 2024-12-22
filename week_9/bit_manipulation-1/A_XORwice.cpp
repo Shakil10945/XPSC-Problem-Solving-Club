@@ -1,20 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n;
+int a, b;
 
 void input()
 {
-    cin>>n;
+    cin>>a>>b;
 }
 
 void solve()
 {
     input();
-    
-    for(int i=n; i>=1; i--)
-        cout<<i<<" ";
-    cout<<endl;
+    cout<<(a^b)<<endl;    
 }
 
 int main()
