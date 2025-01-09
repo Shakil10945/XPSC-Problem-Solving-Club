@@ -4,7 +4,6 @@ using namespace std;
 
 vector<int> allPali;
 
-// Precomputes all integer palindromes up to 32785
 void precompute() {
     for (int i = 0; i < 32786; i++) {
         string s = to_string(i);
@@ -42,7 +41,7 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    precompute(); // Precompute palindromes once
+    precompute();
 
     int t;
     cin >> t;
