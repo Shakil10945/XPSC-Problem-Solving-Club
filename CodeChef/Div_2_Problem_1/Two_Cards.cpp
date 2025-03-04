@@ -31,7 +31,28 @@ void solve()
       max_index_of_a = i;
   }
 
-  if ()
+  for(int i=0; i<n; i++)
+  {
+    if(i == max_index_of_a) continue;
+
+    if(max(vec[i], vec2[i]) > max(vec[max_index_of_a], vec2[max_index_of_a]))
+    {
+      ans = "YES";
+    }
+  }
+  int max_of_2 = -1;
+  for(int i=0; i<n; i++)
+  {
+    if(i== max_index_of_a)  continue;
+
+    if(max_of_2 == -1 || vec[i] > vec[max_of_2])
+    {
+      max_of_2 = i;
+    }
+  }
+  if(max(vec[max_index_of_a], vec2[max_index_of_a]) > max(vec[max_of_2], vec2[max_of_2]))
+    ans = "YES";
+  cout<<ans<<endl;
 }
 
 int main()
