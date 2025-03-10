@@ -2,40 +2,33 @@
 using namespace std;
 
 int n, k;
-vector<int> vec;
+vector<vector<int>> vec;
 
 void input()
 {
   cin >> n >> k;
-  vec.resize(n);
+  // vec.resize(k);
 
-  for (int i = 0; i < n; i++)
-    cin >> vec[i];
+  vec.assign(k, vector<int>());
+
+  for (int i = 1; i <= n; i++)
+  {
+    int x;
+    cin >> x;
+    vec[x % k].push_back(i);
+  }
 }
 
 void solve()
 {
   input();
 
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < k; i++)
   {
-    bool check = true;
-    for (int j = 0; j < n; j++)
-    {
-      if (i == j)
-        continue;
-      // cout << j << " ";
-      if (abs(vec[i] - vec[j]) % k == 0)
-      {
-        // cout << 'Y' << endl;
-        check = false;
-        break;
-      }
-    }
-    if (check)
+    if (vec[i].size() == 1)
     {
       cout << "YES" << endl;
-      cout << i + 1 << endl;
+      cout << vec[i][0] << endl;
       return;
     }
   }
