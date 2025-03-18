@@ -17,7 +17,13 @@ void solve()
 {
   input();
 
-  sort(vec.begin(), vec.end(), greater<int>());
+  if (k == 1)
+  {
+    cout << max(vec[0] + *max_element(vec.begin() + 1, vec.begin() + n), vec[n - 1] + *max_element(vec.begin(), vec.begin() + n - 1)) << endl;
+    //  vec[0] + vec[n - 1] + *max_element(vec.begin() + 1, vec.begin() + n - 1) - min({vec[0], vec[n - 1], *max_element(vec.begin() + 1, vec.begin() + n - 1)}) << endl;
+    return;
+  }
+  sort(vec.rbegin(), vec.rend());
 
   cout << accumulate(vec.begin(), vec.begin() + k + 1, 0LL) << endl;
 }
