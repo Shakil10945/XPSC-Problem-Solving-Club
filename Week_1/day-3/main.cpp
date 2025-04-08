@@ -8,7 +8,7 @@ int main()
     //cin>>x;
     cout<<"HI how are you ggggggggg"<<endl;
 
-    cout<<" hi......"<<endl;
+    cout<<" hi......iiiiii"<<endl;
     
 
     return 0;
