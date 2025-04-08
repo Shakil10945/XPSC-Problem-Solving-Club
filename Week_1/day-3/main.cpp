@@ -9,7 +9,7 @@ int main()
     cout<<"HI how are you ggggggggg"<<endl;
 
     cout<<" hi......iiiiii"<<endl;
-    cout<<"liiliiii"<<endl;
+    cout<<"oooooooo"<<endl;
 
     return 0;
 }
