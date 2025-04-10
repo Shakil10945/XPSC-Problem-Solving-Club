@@ -7,6 +7,7 @@ vector<int> vec;
 void input()
 {
     
+    
     cin >> n;
     vec.resize(n);
 
