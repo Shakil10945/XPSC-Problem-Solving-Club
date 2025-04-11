@@ -1,1 +1,0 @@
-# XPSC-Problem-Solving-Club
