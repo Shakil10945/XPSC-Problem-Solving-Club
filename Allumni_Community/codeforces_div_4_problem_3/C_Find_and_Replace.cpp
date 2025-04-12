@@ -1,6 +1,6 @@
+
 #include <bits/stdc++.h>
 using namespace std;
-
 int main()
 {
     ios::sync_with_stdio(false);
@@ -11,41 +11,31 @@ int main()
     while (t--)
     {
         int n; cin>>n;
-        string str; cin>>str;
-        if(n==1)
+        string str; cin>> str;
+
+        vector<int> pos(26);
+        for(int i=0; i<26; i++)
+            pos[i] = -1;
+        bool check = false;
+        for(int i=0; i<n; i++)
         {
-            cout<<"YES"<<endl;
-            continue;
-        }
-        if(str[0] == str[1])
-        {
-            cout<<"NO"<<endl;
-            continue;
-        }
-        bool check = true;
-        for(int i=2; i<n; i+=2)
-        {
-            if(str[0] != str[i])
+            int curr = (str[i] - 'a');
+            if(pos[curr] == -1)
             {
-                cout<<"NO"<<endl;
-                check = false;
-                break;
+                pos[curr] = (i%2);
             }
-        }
-        if(check)
-        {
-            for(int i=3; i<n; i+=2)
+            else
             {
-                if(str[1] != str[i])
+                if(pos[curr]!=(i%2))
                 {
                     cout<<"NO"<<endl;
-                    check = false;
+                    check = true;
                     break;
                 }
             }
         }
-        if(check)
-            cout<<"YES"<<endl;
+
+        if(! check)  cout<<"YES"<<endl;
     }
 
     return 0;
