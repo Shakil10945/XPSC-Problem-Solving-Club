@@ -14,8 +14,17 @@ int main()
         cin>>n;
         string str;
         cin>>str;
-
-        
+        bool check = false;
+        for(int i=0; i<n/2; i++)
+        {
+            if(str[i] == str[n-i])
+            {
+                cout<< n-i<<endl;
+                check = true;
+                break;
+            }
+        }
+        if(!check)        cout<<0<<endl;
 
 
 
