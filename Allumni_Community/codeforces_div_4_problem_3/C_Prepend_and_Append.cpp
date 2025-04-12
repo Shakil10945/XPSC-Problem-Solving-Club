@@ -14,17 +14,22 @@ int main()
         cin>>n;
         string str;
         cin>>str;
+
         bool check = false;
-        for(int i=0; i<n/2; i++)
+        for(int i=0, j=n-1; i<j; i++, j--)
         {
-            if(str[i] == str[n-i])
+            if(str[i] == str[j])
             {
-                cout<< n-i<<endl;
+                cout<< j-i+1<<endl;
                 check = true;
                 break;
             }
         }
-        if(!check)        cout<<0<<endl;
+        if(!check)
+        {
+            if(n%2==0)   cout<<0<<endl;
+            else        cout<<1<<endl;
+        }
 
 
 
