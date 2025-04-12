@@ -15,6 +15,8 @@ int main()
         string str;
         cin >> str;
 
+        
+
         int siz = 0;
         for(int i=0; i<a; i++)
         {
