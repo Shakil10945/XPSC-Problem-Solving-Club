@@ -15,7 +15,7 @@ int main()
 
         if(r==s)
         {
-            if(r[0] == r[r.size()-1])
+            if(all_of(s.begin(), s.end(), [&](char c) {return c == s[0];}))
                 cout<<"NO"<<endl;
             else
             {
