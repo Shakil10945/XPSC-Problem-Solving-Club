@@ -13,8 +13,7 @@ int main()
         int m, a,b ,c ;
         cin>>m>>a>>b>>c;
         int x;
-        cout<< min(m,a) + (x = min(c, max(0, m-a)) , c-=x,x)
-            +min(m,b) + (x = min(c, max(0, m-b)))<<endl;
+        cout<< min(m,a) + min(m,b) + (min(2*m-(min(m,a) + min(m,b)), c))<<endl;
     }
 
     return 0;
