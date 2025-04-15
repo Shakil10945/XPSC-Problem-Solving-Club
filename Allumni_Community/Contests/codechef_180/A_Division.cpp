@@ -30,6 +30,7 @@ int main()
         }
         else
         {
+            
             cout<<"Division 1"<<endl;
             continue;
         }
