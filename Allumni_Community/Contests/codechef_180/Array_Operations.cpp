@@ -17,15 +17,39 @@ void input()
 void solve()
 {
     input();
-    
-    for(int i=0; i<n-2; i++)
+    if(n==1)
     {
-        vec[i] = max({vec[i]+1, vec[i+1], vec[i+2]+1});
-        vec[i+1] = max({vec[i]+1, vec[i+1], vec[i+2]+1});
-        vec[i+2] = max({vec[i]+1, vec[i+1], vec[i+2]+1});
+        cout<<vec[0]<<endl;
+        return;
     }
+    if(n==3)
+    {
+        if(vec[1]>(max(vec[0], vec[2])))
+        {
+            cout<<vec[1]<<endl;
+            return;
+        }
+        else 
+        {
+            cout<<*max_element(vec.begin(),vec.end())+1<<endl;
+            return;
+        }
+    }
+    
+    int maxx = *max_element(vec.begin(),vec.end());
 
-    cout<< *max_element(vec.begin(),vec.end())<<endl;
+    for(int i=0;i<n; i++)
+    {
+        if(maxx == vec[i])
+        {
+            if((i+1 )%2 !=0)
+            {
+                cout<<maxx+(n/2)<<endl;
+                return;
+            }
+        }
+    }
+    cout<<maxx + (n/2)-1<<endl;
 }
 
 int main()
