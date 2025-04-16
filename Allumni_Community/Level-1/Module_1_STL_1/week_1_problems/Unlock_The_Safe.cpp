@@ -21,11 +21,8 @@ void input()
 void solve()
 {
     input();
-
     int sum = 0;
-
     int dif = INT_MAX;
-
     for(int i=0; i<n; i++)
     {
         int x= abs(vec[i]- vec2[i]);
