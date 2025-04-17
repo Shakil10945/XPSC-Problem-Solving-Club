@@ -8,14 +8,16 @@ int main()
 
     int t;
     cin >> t;
+    set<string> myset;
     while (t--)
     {
-        int n;  cin>>n;
-        string str;
-        cin>>str;
-
-        cout<<(count(str.begin(), str.end(),'B')? (str.rfind('B') - str.find('B') + 1) : 0)<<endl;
+        string str, strr;
+        cin>> str >> strr;
+        myset.insert(str+ " " +strr); 
     }
+
+    cout<<myset.size()<<endl;
+    myset.clear();
 
     return 0;
 }
