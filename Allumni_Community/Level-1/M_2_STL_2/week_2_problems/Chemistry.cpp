@@ -20,6 +20,8 @@ int main()
 
 
 
+       
+        
         
 
         cin>>str;
