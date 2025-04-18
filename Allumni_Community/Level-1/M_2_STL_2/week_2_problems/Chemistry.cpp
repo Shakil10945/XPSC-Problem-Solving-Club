@@ -22,8 +22,9 @@ int main()
 
        
         
-        
 
+
+        
         cin>>str;
 
         map<char, int> my_map;
