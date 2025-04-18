@@ -18,7 +18,9 @@ int main()
 
         string str; 
 
+
         
+
         cin>>str;
 
         map<char, int> my_map;
