@@ -21,12 +21,12 @@ int main()
         {
             if((str[i] == 'R' && st[i] != 'R' ) ||(st[i] == 'R' && str[i] != 'R' ))
             {
-                cout<<"NO"<<endl;
+                cout<<"NO"  <<endl;
                 ch = false;
                 break;
             } 
         }
-        if(ch)  cout<<"YES"<<endl;
+        if(ch)  cout<<   "YES"<<endl;
     }
 
     return 0;
