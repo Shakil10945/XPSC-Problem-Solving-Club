@@ -10,6 +10,7 @@ int main()
     cin >> t;
     while (t--)
     {
+        
 
         int a, b; 
 
