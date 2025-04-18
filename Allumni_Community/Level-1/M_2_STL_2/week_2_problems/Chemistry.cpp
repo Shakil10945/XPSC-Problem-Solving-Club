@@ -14,9 +14,10 @@ int main()
 
     while (t--)
     {
+        
         int a, b; 
 
-        
+
 
         cin>>a>>b;
 
