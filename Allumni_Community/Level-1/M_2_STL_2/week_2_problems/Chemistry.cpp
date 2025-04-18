@@ -7,6 +7,7 @@ int main()
     cin.tie(nullptr);
 
     int t;
+    
     cin >> t;
 
 
@@ -15,7 +16,7 @@ int main()
     while (t--)
     {
 
-        
+
         int a, b; 
 
 
