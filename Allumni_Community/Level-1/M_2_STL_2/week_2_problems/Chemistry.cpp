@@ -10,12 +10,15 @@ int main()
     cin >> t;
 
 
-    
+
+
     while (t--)
     {
         int a, b; cin>>a>>b;
 
         string str; 
+
+        
         cin>>str;
 
         map<char, int> my_map;
