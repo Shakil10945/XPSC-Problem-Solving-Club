@@ -16,6 +16,7 @@ int main()
     {
         int a, b; cin>>a>>b;
 
+        
         string str; 
 
 
@@ -24,7 +25,7 @@ int main()
         
 
 
-        
+
         cin>>str;
 
         map<char, int> my_map;
