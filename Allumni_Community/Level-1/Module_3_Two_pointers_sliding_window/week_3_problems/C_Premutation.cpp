@@ -14,14 +14,15 @@ void input()
 
     for (int i = 0; i < n; i++)
     {
-        vector<int>tem(n-1);
-        for(int j=0; j<n; j++)
+        vector<int>tem;
+        for(int j=0; j<n-1; j++)
         {
-            cin>>tem[i];
-            if(j==0)    fq[tem[i]]++;
+            int x;
+            cin>>x;
+            tem.push_back(x);
+            if(j==0)    fq[tem[j]]++;
         }
         vec[i] = tem;
-        tem.clear();
     }
     
 }
@@ -29,27 +30,40 @@ void input()
 void solve()
 {
     input();
+    // for(int i=1; i<=n; i++)     cout<<fq[i]<<" ";
+    // cout<<endl;
+    // for(int i=0; i<n; i++)
+    // {
+    //     for(int j=0;j<n-1; j++)
+    //         cout<<vec[i][j]<<" ";
+    //     cout<<endl;
+    // }
     int search = 0;
     for(int i=1; i<=n;i++)
     {
-        if(fq[i] == 1)
+        if(fq[i] == n-1)
         {
-            cout<<fq[i]<<" ";
+            cout<<i<<" ";
             for(int j=0; j<n;j++)
             {
                 if(vec[j][0]!= i)
                 {
-                    for(int k=0; k<n;k++)
+                    for(int k=0; k<n-1;k++)
                     {
                         cout<<vec[j][k]<<" ";
                     }
+                    cout<<endl;
+                    fq.clear();
+                    return;
                 }
-                cout<<endl;
-                return;
+                
+                //return;
                 
             }
         }
     }
+
+    //fq.clear();
     
     
 }
