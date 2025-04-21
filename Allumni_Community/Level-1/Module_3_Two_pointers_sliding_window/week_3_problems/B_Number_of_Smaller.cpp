@@ -23,15 +23,28 @@ void solve()
 {
     input();
     
-    for(int i=0; i<m; i++)
-    {
-        auto it = lower_bound(vec.begin(),vec.end(),vec2[i]);
-        int idx = it-vec.begin();
+    // for(int i=0; i<m; i++)
+    // {
+    //     auto it = lower_bound(vec.begin(),vec.end(),vec2[i]);
+    //     int idx = it-vec.begin();
 
-        cout<<idx<<" ";
-    }
-    cout<<endl;    
+    //     cout<<idx<<" ";
+    // }
+    // cout<<endl;    
     
+
+    int l=0, r=0;
+    while(r<m)
+    {
+        if(l<n && vec[l]<vec2[r])
+            l++;
+        else
+        {
+            cout<<l<<" ";
+            r++;
+        }
+    }
+    cout<<endl;
 }
 
 int main()
