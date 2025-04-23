@@ -13,12 +13,28 @@ int main()
         string str;
         cin>>str;
 
-        for(int i=0; i<str.size(); i++)
-        {
-            
-        }
-    }
+        int n= str.size();
 
+        map<char, vector<int>> let_to_ind;
+        for(int i=0;i<n;i++)
+            let_to_ind[str[i]].push_back(i);
+        int direction = (str[0]< str[n-1] ? 1 : -1);
+        vector<int> ans;
+        for(char c = str[0]; c!=str[n-1]+direction; c+=direction)
+        {
+            for(auto now : let_to_ind[c])
+                ans.push_back(now);
+        }
+        int cost = 0;
+        for(int i=1; i<ans.size(); i++)
+            cost+= abs(str[ans[i]] -str[ans[i-1]]);
+
+        cout<<cost<<" "<<ans.size()<<endl;
+        for(auto now: ans)
+            cout<<now+1<<" ";
+        cout<<endl;
+
+    }
     return 0;
 }
-
+    
