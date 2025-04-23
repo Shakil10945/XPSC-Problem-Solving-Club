@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int a,b,n;
+vector<int> vec;
+
+void input()
+{
+    cin >> a>>b>>n;
+    vec.resize(n);
+
+    for (int i = 0; i < n; i++)
+        cin >> vec[i];
+    
+}
+
+void solve()
+{
+    input();
+    long long sum = b;
+    for(auto x: vec)
+        sum+=min(a-1, x);
+    cout<<sum<<endl;    
+    
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
+
+    return 0;
+}
