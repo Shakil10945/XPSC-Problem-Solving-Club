@@ -1,3 +1,20 @@
+// #include<bits/stdc++.h>
+// using namespace std;
+// int main()
+// {
+//     int t;cin>>t;
+//     while(t--)
+//     {
+//         int n;cin>>n;
+//         int m=n*(n-1)/2,b[m];
+//         for(int i=0;i<m;i++)cin>>b[i];
+//         sort(b,b+m);
+//         for(int i=0;i<m;i+=--n)cout<<b[i]<<' ';
+//         cout<<"1000000000\n";
+//     }
+// }
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -7,9 +24,9 @@ vector<int> vec;
 void input()
 {
     cin >> n;
-    vec.resize((n*(n-1))/2);
+    vec.resize(n*(n-1)/2);
 
-    for (int i = 0; i < (n*(n-1))/2; i++)
+    for (int i = 0; i < n*(n-1)/2; i++)
         cin >> vec[i];
     
 }
@@ -17,32 +34,14 @@ void input()
 void solve()
 {
     input();
-
-    //cout<<(n*(n-1))/2<<" hi "<<endl;
-
-    set<int>myset;
-    for(int x: vec)
-        myset.insert(x);
     
-    if(myset.size() == n)
-    {
-        for(auto x: myset)
-            cout<<x<<" ";
-        cout<<endl;
-    }
-    else
-    {
-        int rem = n- myset.size();
-        
-        for(auto x: myset)
-            cout<<x<<" ";
-        while (rem--)
-        {
-            cout<<*myset.rbegin()<<" ";
-        }
-        cout<<endl;
+    int m = n*(n-1)/2;
 
-    }
+    sort(vec.begin(),vec.end());
+
+    for(int i=0; i<m; i+=--n)
+        cout<<vec[i]<<" ";
+    cout<<1000000000<<endl;
 }
 
 int main()
