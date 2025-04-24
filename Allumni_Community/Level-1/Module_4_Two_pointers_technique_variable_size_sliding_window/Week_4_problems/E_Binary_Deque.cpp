@@ -34,7 +34,7 @@ void solve()
         int temp_l = l;
         while (!vec[l]='1')
         {
-            i
+            i= 
         }
         
         //cout<<"current "<<curr<<endl;
