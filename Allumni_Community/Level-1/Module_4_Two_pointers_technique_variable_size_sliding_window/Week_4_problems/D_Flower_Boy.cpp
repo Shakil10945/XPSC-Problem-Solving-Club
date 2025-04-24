@@ -28,7 +28,15 @@ void solve()
         mymap[vec[i]].insert(i);
     }
 
-    
+    int manage = 0;
+
+    for(int i=0; i<m; i++)
+    {
+        int d = *mymap[vec2[i]].begin();
+        if()
+    }
+
+
     
     
 }
