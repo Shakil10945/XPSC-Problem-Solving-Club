@@ -26,41 +26,18 @@ void solve()
         return;
     }
 
-    int l=0, r=n-1;
-    int curr = n-s;
-    int cnt=0;
-    while (r>=l)
+    int l=0, r=0;
+    int curr = 0;
+    int ans = 0;
+    while (r<n)
     {
-        int temp_l = l;
-        while (!vec[l]='1')
-        {
-            i= 
-        }
-        
-        //cout<<"current "<<curr<<endl;
-
-        //cout<<'h'<<endl;
-        if(!curr)
-        {
-            cout<<cnt<<endl;
-            return;
-        }
-        if(vec[l] >= vec[r])
-        {
-            curr-= vec[l];
-            l++;
-        }
-        else 
-        {
-            curr-=vec[r];
-            r--;
-        }
-        cnt++;
+        curr += vec[r];
+        while (curr > s)
+            curr -= vec[l++];
+        ans = max(ans, r-l+1);
+        r++;
     }
-    cout<<cnt<<endl;
-    
-    
-    
+    cout<<n-ans<<endl;
 }
 
 int main()
