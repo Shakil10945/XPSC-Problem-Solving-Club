@@ -1,28 +1,31 @@
-#include<bits/stdc++.h>
-using namespace std;
 
+#include <bits/stdc++.h>
+using namespace std;
 
 int main()
 {
-    int t;
-    cin>>t;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    while(t--)
+    int t;
+    cin >> t;
+    while (t--)
     {
         int n;
         cin>>n;
+        string str; cin>>str;
 
-        string s;
-        cin>>s;
+        sort(str.begin(), str.end());
 
-        sort(s.begin(),s.end());
-
-        for(int i=0;i<n/2;i++)
+        for(int i=0; i<n/2; i++)
         {
-            cout<<s[i]<<s[n-i-1];
+            cout<<str[i]<<str[n-i-1];
         }
-        if(n&1)
-            cout<<s[n/2];
+        if(n&1)     cout<<str[n/2];
         cout<<endl;
     }
+
+    return 0;
 }
+
+
