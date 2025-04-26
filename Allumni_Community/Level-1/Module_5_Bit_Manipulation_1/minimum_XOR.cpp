@@ -26,6 +26,10 @@ int main()
             ans = min(ans, currXOR);
         }
         cout<< ans <<endl;
+
+
     }
+
+    return 0;
     
 }
