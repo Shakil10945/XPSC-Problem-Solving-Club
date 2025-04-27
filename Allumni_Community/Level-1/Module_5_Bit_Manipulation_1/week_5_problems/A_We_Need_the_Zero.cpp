@@ -18,15 +18,23 @@ void solve()
 {
     input();
     
-    int xooor = 0;
+    int xxor = 0;
     for(auto x: vec)
-        xooor ^=x;
+        xxor ^= x;
     
-    int xx = xooor;
-    //cout<<xooor<<endl;
-    for(int x: vec)
-        xx = min(xx, xooor^x);
-    cout<<xx<<endl;
+    int ans = 0;
+    for(int i=0; i<n; i++)
+    {
+        ans ^=(xxor^vec[i]);
+    }
+
+    if(ans==0)
+    {
+        cout<<xxor<<endl;
+    }
+    else
+        cout<<-1<<endl;
+    
 }
 
 int main()
