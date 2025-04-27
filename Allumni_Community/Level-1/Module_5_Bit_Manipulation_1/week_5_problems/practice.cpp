@@ -50,6 +50,8 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
+    
+
     int n = 45;
     cout<< check_kth_bit_on_or_off(n,1)<<endl;
 
