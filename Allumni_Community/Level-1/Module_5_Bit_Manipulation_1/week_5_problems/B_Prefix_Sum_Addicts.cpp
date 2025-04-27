@@ -14,35 +14,41 @@ void input()
     
 }
 
-
 void solve()
 {
     input();
-    if(k==1 || n==1 || k>n)
-    {
-        cout<<"Yes"<<endl;
-        return;
-    }
 
     deque<int>new_vec;
+
     for(int i=1;i<k; i++)
+    {
         new_vec.push_back(vec[i]-vec[i-1]);
-
-    
-
+    }
+    if(!is_sorted(new_vec.begin(), new_vec.end()))
+    {
+        cout<<"No"<<endl;
+        return;
+    }
     if(k==n)    new_vec.push_front(vec[0]);
     if(k<n)
     {
-        if(vec[0]<=0)
+        if(vec[0]==0)
             new_vec.push_front(vec[0]);
-        else
+        else if(vec[0]>0)
         {
-            int rem = n-k+1;
-            new_vec.push_front(((vec[0])/(rem) )+ (vec[0]%rem ? 1: 0));
+            new_vec.push_front((vec[0]+(n-k))/(n-k+1));
         }
+        else
+        new_vec.push_front((vec[0])/(n-k+1));
+
     }
+
     if(is_sorted(new_vec.begin(),new_vec.end()))    cout<<"Yes"<<endl;
     else    cout<<"No"<<endl;
+
+    
+    
+    
 }
 
 int main()
