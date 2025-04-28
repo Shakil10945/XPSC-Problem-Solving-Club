@@ -33,12 +33,10 @@ int main()
             for(int i=pos+1;i<=n;i++)
             {
                 int j=(i%n)+1;
-                if(a[i]>a[j])
-                    fl=1;
+                if(a[i]>a[j])fl=1;
             }
-
-            if(!fl)     cout<<"Yes"<<endl;
-            else        cout<<"No"<<endl;
+            if(!fl)cout<<"Yes"<<endl;
+            else cout<<"No\n";
         }
     }
 }

@@ -18,47 +18,46 @@ void solve()
 {
     input();
     
-    if(is_sorted(vec.begin(),vec.end()))
+    int pos =-1;
+    for(int i=0; i<n-1;i++)
+    {
+        if(vec[i] > vec[i+1])
+        {
+            pos = i;
+            break;
+        }
+    }
+
+    if(pos ==-1)
     {
         cout<<"Yes"<<endl;
         return;
     }
-
-    int l=0, r=1;
-    bool check = false;
-    int down =0;
-    while (r<n)
-    {
-        while (r<n && vec[r]>=vec[r-1])
-        {
-            r++;
-        }
-        if(r<n && vec[r]<vec[r-1])
-        {
-            check = true;
-            down ++;
-            //cout<<down<<endl;
-
-            if(down >=2)
-            {
-                cout<<"No"<<endl;
-                return;
-            }
-            r++;
-            while (r<n && vec[r]>=vec[r-1])
-            {
-                if(vec[r] > vec[l])
-                {
-                    cout<<"No"<<endl;
-                    return;
-                }
-                r++;
-            }
-        }
-        
-    }
-    cout<<"Yes"<<endl;
     
+    else
+    {
+       // cout<<pos<<endl;
+        bool check = false;
+
+        for(int i=pos+1; i<n; i++)
+        {
+            if(i==n-1)
+            {
+                if(vec[i]>vec[0])
+                {
+                    check = true;
+                }
+                continue;
+            }
+            if(vec[i]> vec[i+1])
+            {
+                check = true;
+            }
+        }
+        if(check) cout<<"No"<<endl;
+        else      cout<<"Yes"<<endl;
+
+    }
 }
 
 int main()
