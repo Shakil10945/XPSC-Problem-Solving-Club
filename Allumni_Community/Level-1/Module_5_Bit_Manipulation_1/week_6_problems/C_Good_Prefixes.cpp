@@ -24,16 +24,12 @@ void solve()
     for(int i=0;i<n; i++)
     {
         x = max(x, vec[i]);
-        if(x == ans)
-        {
-            cnt++;
-        }
         ans +=vec[i];
-        if(i==n-1)
-        {
-            if(x==ans)
-                cnt++;
-        }
+        if(ans-x == x)
+            cnt++;
+        
+
+        
         
     }
     cout<<cnt<<endl;
