@@ -13,12 +13,13 @@ void solve() {
     }
 
     long long max_in_prefix = 0;
-    cout<<*max_element(a.begin(), a.end())<<" ";
     for (int k = 1; k <= n; ++k) {
         if (k < n) {
             max_in_prefix = max(max_in_prefix, a[n-k-1]); 
             cout << max(suffix_sum[n-k], suffix_sum[n-k] + max_in_prefix) << " ";
-        } 
+        } else {
+            cout << suffix_sum[0] << " "; // when k == n, full sum
+        }
     }
     cout << "\n";
 }
