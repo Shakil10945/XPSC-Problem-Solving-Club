@@ -21,22 +21,43 @@ void solve()
     map<int,int>mymap;
     for(auto x: vec)
         mymap[x]++;
-    map<int, vector<int>> mp;
+    
+    vector<int>c;
     for(auto x: mymap)
     {
-        if(x.second>=k)
-            mp[k].push_back(x.first);
+        if(x.second >=k)    c.push_back(x.first);
     }
-    
 
-    if(mp[k].size()<2)
+    if(c.size() == 0)
     {
         cout<<-1<<endl;
         return;
     }
 
-    cout<<*mp[k].begin()<<" "<<*mp[k].rbegin()<<endl;
-    
+    sort(c.begin(),c.end());
+
+    int mx = 0;
+
+    int lans = c[0];
+    int rans = c[0];
+
+    int l = c[0];
+
+    for(int i=1; i<c.size(); i++)
+    {
+        if(c[i]-1 == c[i-1])
+        {
+            if(c[i]-l >mx)
+            {
+                lans = l;
+                rans = c[i];
+                mx = c[i] - l;
+            }
+        }
+        else
+            l = c[i];
+    }
+    cout<<lans<<" "<<rans<<endl;
     
 }
 
