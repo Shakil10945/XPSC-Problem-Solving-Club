@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include "bits/stl_algobase.h"  // for __gcd, __lg
 using namespace std;
 
 int n;
@@ -18,9 +17,15 @@ void solve()
 {
     input();
 
-    int n = __lg(5);
-    
-    cout<<"HI"<<endl;
+    //set<int>ans;
+    long long sum =0;
+    for(int i=0;i<n; i++)
+    {
+        for(int j=0; j<__lg(n); j++)
+        {
+            
+        }
+    }
     
 }
 
