@@ -10,16 +10,19 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n;  cin>>n;
-        set<int>myset;
+        long long n;  cin>>n;
+        set<long long>myset;
         myset.insert(n);
-        for(int i=0; i<=__lg(n); i++)
+        for(long long i=0; i<=__lg(n); i++)
         {
             if((n>>i)&1)
-            {
-                myset.insert( (~(i<<1))&n);
-            }
+                myset.insert((~(1LL<<i))&n);
         }
+        while (*myset.begin() ==0)
+        {
+            myset.erase(myset.begin());
+        }
+        
         cout<<myset.size()<<endl;
         for(auto x: myset)
         {
