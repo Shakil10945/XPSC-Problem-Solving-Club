@@ -1,3 +1,4 @@
+//code 01
 #include <bits/stdc++.h>
 using namespace std;
 set<int> myset;
@@ -16,7 +17,8 @@ void set_xor()
     }
 }
 int n;
-multiset<int> vec;
+vector<int> vec;
+unordered_map<int,int>mp;
 void input()
 {
     cin >> n;
@@ -24,29 +26,30 @@ void input()
     {
         int x;
         cin>>x;
-        vec.insert(x);
+        vec.push_back(x);
+        mp[x]++;
     }
 }
 void solve()
 {
     input();
     long long ans = 0;
-    for(auto i=vec.begin(); i!=vec.end();)
+    for(int i=0; i<n;i++)
     {
         for(auto it = myset.begin(); it!=myset.end();it++)
         {
-            int target= ((*i)^(*it));
-            // if(*it == 0)
-            // {
-            //     ans+= (vec.count(target)-1);
-            //     continue;
-            // }
-            ans+= vec.count(target);
+            int target= ((*it)^(vec[i]));
+            ans+= mp[target];
         }
-        vec.erase(i++);
+        mp[vec[i]]--;
+        if(mp[vec[i]] == 0)
+        {
+            mp.erase(vec[i]);
+        }
     }
     cout<<ans<<endl;
-    vec.clear();  
+    vec.clear();
+    mp.clear();  
 }
 int main()
 {
@@ -62,75 +65,59 @@ int main()
 }
 
 
-// #include <bits/stdc++.h>
+//code 02
+
+// #include<bits/stdc++.h>
 // using namespace std;
-// set<int> myset;
-// void set_xor()
+
+// vector<int> allPali;
+// void precompute()
 // {
 //     for(int i=0;i<(1<<15); i++)
 //     {
-//         string str = to_string(i);
-//         string strr = str;
-//         reverse(strr.begin(), strr.end());
+//         string s = to_string(i);
+//         string temp = s;
+//         reverse(temp.begin(),temp.end());
 
-//         if(str == strr)
-//         {
-//             myset.insert(i);
-//         }
+//         if(temp == s)
+//             allPali.push_back(i);
 //     }
-// }
-
-
-// int n;
-// multiset<int> vec;
-
-// void input()
-// {
-//     cin >> n;
-
-//     for (int i = 0; i < n; i++)
-//     {
-//         int x;
-//         cin>>x;
-//         vec.insert(x);
-//     }
-    
 // }
 
 // void solve()
 // {
-//     //set_xor();
-//     input();
-//     long long ans = 0;
-//     for(auto i=vec.begin(); i!=vec.end();i++)
+//     int n;
+//     cin>>n;
+//     vector<int>vec(n);
+//     for(int i=0; i<n; i++)
+//         cin>>vec[i];
+    
+//     unordered_map<int,int>freq;
+//     long long count = 0;
+
+//     for(auto ele: vec)
 //     {
-//         for(auto it = myset.begin(); it!=myset.end(); it++)
+//         freq[ele]++;
+//         for(auto pali: allPali)
 //         {
-//             if(*it == 0)
-//             {
-//                 ans+= (vec.count(*i ^ *it)-1);
-//                 continue;
-//             }
-//             ans+= vec.count(*i^*it);
+//             int target = ele ^ pali;
+//             count +=  freq[target];
 //         }
 //     }
-//     cout<<ans<<endl;
 
-//     //myset.clear();
-//     vec.clear();
-    
-    
+//     cout<<count<<endl;
 // }
+
 
 // int main()
 // {
 //     ios::sync_with_stdio(false);
 //     cin.tie(nullptr);
-//     set_xor();
-//     int t;
-//     cin >> t;
-//     while (t--)
-//         solve();
 
+//     precompute();
+//     int t;
+//     cin>>t;
+//     while(t--)
+//         solve();
 //     return 0;
 // }
