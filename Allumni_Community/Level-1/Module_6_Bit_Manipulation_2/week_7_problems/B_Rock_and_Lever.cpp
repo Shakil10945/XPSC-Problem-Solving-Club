@@ -35,7 +35,7 @@ void solve()
             if(x==it->first)
             {
                 if(it->second >1)
-                    ans+=(it->second-1);
+                    ans+=(it->second);
                 it->second--;
                 if(!it->second)
                     it = mp.erase(it);
