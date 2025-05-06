@@ -1,38 +1,48 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
+
+void solve()
+{
+    long long a = 0, b, c,d, pos =1, bit_b, bit_c, bit_d, mask = 1;
+    cin>>b>>c>>d;
+    for(long long i =0; i<62; i++)
+    {
+        if(b&mask)  bit_b = 1;
+        else        bit_b = 0;
+        if(c&mask)  bit_c= 1;
+        else        bit_c = 0;
+        if(d&mask)  bit_d = 1;
+        else        bit_d = 0;
+
+        if((bit_b && (!bit_c) && (!bit_d)) || ((!bit_b) && bit_c && bit_d))
+        {
+            pos = 0;
+            break;
+        }
+        if(bit_b && bit_c)
+            a+=(1LL - bit_d)*mask;
+        else
+            a+= bit_d * mask;
+
+        mask =(mask<<1);
+    }
+    if(pos)
+        cout<<a<<endl;
+    else
+        cout<<-1<<endl;
+}
+
+
+
+
+
+
+
 
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        int a,b,c;  cin>>a>>b>>c;
-        bool check = false;
-        int x =0;
-        for(int i=0; i<31; i++)
-        {
-            if(((c>>i)&1) && ((b>>i)&1) && (!((a>>i)&1)))
-            {
-                cout<<-1<<endl;
-                check = false;
-                break;
-            }
-            if((!((c>>i)&1)) && (!((b>>i)&1)) && (((a>>i)&1)))
-            {
-                cout<<-1<<endl;
-                check = false;
-                break;
-            }
-
-        }
-        
-        if((a|(b|c))- (b & (b|c)) == c) cout<<(b|c)<<endl;
-        else   cout<<-1<<endl;
-    }
-    return 0;
+    long long t;
+    cin>>t;
+    while(t--)
+        solve();
 }
-
