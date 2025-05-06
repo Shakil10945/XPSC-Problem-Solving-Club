@@ -11,23 +11,27 @@ int main()
     while (t--)
     {
         int a,b,c;  cin>>a>>b>>c;
-        
-        int maxx = max({__bit_width(a), __bit_width(b), __bit_width(c)});
-        bool check = true;
-        int j = 0;
-        for(int i=0; i<(1<<maxx); i++)
+        bool check = false;
+        int x =0;
+        for(int i=0; i<31; i++)
         {
-            
-            //cout<<j<<" ";
-            if(((a|j)- (b&j)) ==c)
+            if(((c>>i)&1) && ((b>>i)&1) && (!((a>>i)&1)))
             {
-                cout<<j<<endl;
+                cout<<-1<<endl;
                 check = false;
                 break;
             }
-            j+=(1<<i);
+            if((!((c>>i)&1)) && (!((b>>i)&1)) && (((a>>i)&1)))
+            {
+                cout<<-1<<endl;
+                check = false;
+                break;
+            }
+
         }
-        if(check)   cout<<-1<<endl;
+        
+        if((a|(b|c))- (b & (b|c)) == c) cout<<(b|c)<<endl;
+        else   cout<<-1<<endl;
     }
     return 0;
 }
