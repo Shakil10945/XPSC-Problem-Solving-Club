@@ -13,7 +13,20 @@ int main()
         int n, k;
         cin>>n>>k;
 
-        
+        int ans  = 0;
+        if(k==1)
+        {
+            cout<<n<<endl;
+            continue;
+        }
+        int dd = 0;
+        while (n)
+        {
+            dd+=n%k;
+            n/=k;
+        }
+        cout<<dd<<endl;
+
     }
 
     return 0;
