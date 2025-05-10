@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+long long LCM(long long a, long long b)
+{
+
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    long long n,a,b,p,q;
+    cin>>n>>a>>b>>p>>q;
+
+    long long x = (n/a)*p, y= (n/b)*q, overlap = (n/LCM(a,b));
+    long long ans = ((x+y)-(overlap*(p+q))) + (overlap*max(p,q));
+
+    cout<<ans<<endl;
+    return 0;
+}

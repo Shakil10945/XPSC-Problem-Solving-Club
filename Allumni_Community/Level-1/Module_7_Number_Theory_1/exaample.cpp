@@ -1,30 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MOD = 1e9 + 7;
+bool isPrime(int n) {
+   if (n == 1) {
+      return false;
+   }
+
+   for (int i = 2;i * i <= n;i++) {
+      if (n % i == 0) {
+         return false;
+      }
+   }
+   return true;
+}
 
 int main() {
    ios::sync_with_stdio(false);
    cin.tie(nullptr);
 
-   int t;
-   cin >> t;
-   while (t--) {
-      // (a*b)%MOD
-      // (a%MOD*b%MOD)%MOD
+   int n;
+   cin >> n;
 
-      int n, ans = 1;
-      cin >> n;
-      for (int i = 1;i <= n;i++) {
-         ans = (1LL * ans % MOD * i % MOD) % MOD;
-      }
-      cout << ans << '\n';
-
-      // ans = 1
-      // ans =(1%MOD*2%MOD)%MOD
-      // ans =(2%MOD*3%MOD)%MOD
-      // ans =(6%MOD*4%MOD)%MOD
-      // ans =(24%MOD*5%MOD)%MOD
+   if (isPrime(n)) {
+      cout << 1 << '\n';
    }
+   else if (n % 2 == 0) {
+      cout << 2 << '\n';
+   }
+   else {
+      if (isPrime(n - 2)) {
+         cout << 2 << '\n';
+      }
+      else {
+         cout << 3 << '\n';
+      }
+   }
+
    return 0;
 }
