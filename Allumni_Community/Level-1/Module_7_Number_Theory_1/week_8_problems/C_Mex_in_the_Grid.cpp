@@ -18,7 +18,7 @@ void magical_spiral(int n) {
     arr[x][y] = 0;
     int value = 1;
     int step = 1;
-
+    
     // Directions: right, down, left, up
     int dir[4][2] = {
         {0, 1},   // right
@@ -52,7 +52,7 @@ void magical_spiral(int n) {
     // Print the spiral matrix
     for (const auto& row : arr) {
         for (int num : row) {
-            cout << num << " ";
+            cout << num << "\t";
         }
         cout << '\n';
     }

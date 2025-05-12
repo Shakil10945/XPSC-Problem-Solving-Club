@@ -25,26 +25,18 @@ long long LCM(long long a,long long b)
 void solve()
 {
     input();
-    if(n==2)
-    {
-        cout<<1<<" "<<abs(vec[0]-vec[1])<<endl;
-        return;
-    }
+    
+    long long maxx = *max_element(vec.begin(),vec.end());
 
-    long long gcd=0,lcm=1;
+    long long gcd= 0;
 
     for(int i=0; i<n;i++)
     {
-        gcd = GCD(gcd,vec[i]);
-        lcm = LCM(lcm, vec[i]);
+        gcd = GCD(gcd,maxx-vec[i]);
     }
 
-    long long y=0;
-    for(int i=0;i<n; i++)
-    {
-        y+=((lcm-vec[i])/gcd);
-    }
-    cout<<y<<" "<<gcd<<endl;
+    long long y = maxx*n-accumulate(vec.begin(),vec.end(),0LL);
+    cout<<y/gcd<<" "<<gcd<<endl;
     
     
 }
