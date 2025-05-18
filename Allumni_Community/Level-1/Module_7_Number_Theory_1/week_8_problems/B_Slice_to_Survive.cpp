@@ -21,8 +21,10 @@ int main()
 
         long long total = n*m;
         total-=max({up, down,left,right});
-
         int x =1;
+        
+
+        
         while (total>1)
         {
             if(total%2==0)
@@ -31,7 +33,7 @@ int main()
                 total = ceil((double)total/2);
             x++;
         }
-        if(n==m && n>3)
+        if(n==m && a==b && (ceil(double(a)/2==n)))
             x++;
         cout<<x<<endl;
 
