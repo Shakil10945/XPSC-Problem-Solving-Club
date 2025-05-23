@@ -1,30 +1,36 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 int main() {
     int t;
-    cin >> t; // Number of test cases
-
+    cin >> t;
+    
     while (t--) {
-        int q;
-        cin >> q;
+        int n, q;
+        cin >> n >> q;
 
-        vector<int> a;
-        int cnt = 0;
+        vector<int> a(n);
+        for (int &x : a) cin >> x;
 
-        for (int i = 0; i < q; ++i) {
+        vector<int> queries;
+        queries.push_back(31); // dummy to handle initial comparison
+
+        while (q--) {
             int x;
             cin >> x;
-
-            int nw_cnt = cnt + (!a.empty() && a.back() > x);
-
-            if (nw_cnt == 0 || (nw_cnt == 1 && x <= a[0])) {
-                a.push_back(x);
-                cnt = nw_cnt;
-                cout << '1';
-            } else {
-                cout << '0';
+            if (x < queries.back()) {
+                queries.push_back(x);
             }
+        }
+
+        for (int &x : a) {
+            for (int y : queries) {
+                if (x % (1 << y) == 0) {
+                    x |= (1 << (y - 1));
+                }
+            }
+            cout << x << ' ';
         }
         cout << '\n';
     }
