@@ -18,7 +18,7 @@ void solve()
 {
     input();
 
-    int count =0;
+    int count = 0;
     for(int i=1; i<=n; i++)
     {
         if(i==vec[i])   continue;
