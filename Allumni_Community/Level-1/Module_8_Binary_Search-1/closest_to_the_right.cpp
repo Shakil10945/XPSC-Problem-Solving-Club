@@ -12,32 +12,25 @@ int main()
 
     for(int i=0; i<n; i++)
         cin>>a[i];
+    
     for(int i=0; i<q; i++)
     {
-        int key, l=0, r= n-1, mid;
+        int key, l=0, r=n-1, ans = n, mid;
 
         cin>>key;
-        bool found = faslse;
-
-        while(l<=r)
+        while (l<=r)
         {
-            mid = (l+r)/2;
-            if(key == a[mid])
+            mid = l + (r-l)/2;
+            if(key<= a[mid])
             {
-                found = true;
-                break;
-            }
-            else if(key<a[mid])
+                ans = mid;
                 r = mid-1;
+            }
             else
-                l = mid+1;
+                l= mid+1;
         }
-        if(found)
-        cout<<"YES"<<endl;
-        else 
-            cout<<"NO"<<endl;
+        cout<<ans+1<<endl;
     }
-
     return 0;
 }
 

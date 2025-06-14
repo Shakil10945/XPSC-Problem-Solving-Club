@@ -13,14 +13,13 @@ int main() {
    }
 
    for (int i = 0;i < q;i++) {
-      int key, l = 0, r = n - 1, mid;
+      int key, l = 0, r = n - 1, mid, ans = -1;
       cin >> key;
-      bool found = false;
       while (l <= r) {
-         mid = (l + r) / 2;
+         mid = l + (r - l) / 2;
          if (key == a[mid]) {
-            found = true;
-            break;
+            ans = mid;
+            l = mid + 1;
          }
          else if (key < a[mid]) {
             r = mid - 1;
@@ -29,12 +28,7 @@ int main() {
             l = mid + 1;
          }
       }
-      if (found) {
-         cout << "YES" << '\n';
-      }
-      else {
-         cout << "NO" << '\n';
-      }
+      cout << ans << '\n';
    }
    return 0;
 }
