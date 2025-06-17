@@ -29,67 +29,57 @@ void solve()
 {
     input();
 
-    int row=0;
+    int sizex =0;
+    vector<set<int>>dset;
     for(int i=0; i<n; i++)
     {
+        set<int>st;
         for(int j=0;j<m; j++)
         {
             if(vec[i][j]==k)
             {
-                row++;
-                break;
+                st.insert(j);
             }
         }
-    }
-
-    if(row==1)
-    {
-        cout<<k-1<<endl;
-        return;
-    }
-
-    
-    else if(row>=2)
-    {
-        vector<set<int>>dset;
-
-        for(int i=0; i<n; i++)
-        {
-            set<int>st;
-            for(int j=0; j<m;j++)
-            {
-                if(vec[i][j]==k)
-                    st.insert(j);
-            }
+        if(st.size()>0)
             dset.push_back(st);
-        }
-        size_t si = 0;
-        for (int i = 0; i < dset.size(); i++) 
+        if(st.size()>sizex)
+            sizex = st.size();
+    }
+    if(dset.size()==1)
+    {
+        //cout<<n<<m<<endl;
+        cout<<k-1<<endl;
+    }
+    else
+    {
+        bool ch  = false;
+        set<int> last;
+        if(sizex==1)
         {
-            si = max(si, dset[i].size());
-        }
-
-        //sort(dset.begin(),dset.end());
-        set<int>xxx;
-        bool found = false;
-        for(int i=0; i<n; i++)
-        {
-            if(dset[i].size()==si && !found)
+            for(int i=0;i<dset.size(); i++)
             {
-                found = true;
+                for(auto gg: dset[i])
+                    last.insert(gg);
+            }
+            if(last.size()>2)
+                cout<<k<<endl;
+            else
+                cout<<k-1<<endl;
+            return;
+        }
+        for(int i=0; i<dset.size();i++)
+        {
+            if(!ch && (dset[i].size()==sizex))
+            {
+                ch = true;
                 continue;
             }
-            for(auto dm: dset[i])
-                xxx.insert(dm);
-
-
+            for(auto gg: dset[i])
+                last.insert(gg);
         }
-
-        if(xxx.size()>1)
-            cout<<k-1<<endl;
-        else
-            cout<<k<<endl;
-
+        if(last.size()>1)   cout<<k<<endl;
+        else                cout<<k-1<<endl;
     }
     
 }

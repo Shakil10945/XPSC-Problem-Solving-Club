@@ -28,23 +28,18 @@ void solve()
         mp[x]++;
     
     long long ans = 0;
-    //if(prefix_sum[0]== k)   ans++;
-    //if(prefix_sum[n-1]== k)   ans++;
+    ans+=mp[k];
+    mp.erase(k);
 
     for(int i=0;i <n; i++)
     {
-        // if(prefix_sum[i]==k)
-        // {
-        //     ans++;
-        //     //mp[prefix_sum[i]]--;
-        // }
+    
         if(mp[(prefix_sum[i] - k)])
         {
-            for(int j=1; j<=(mp[prefix_sum[i]-k]); j++)
-                ans+=j;
+            ans++;
 //mp[(prefix_sum[i] + k)]--;
         }
-        mp.erase(prefix_sum[i]-k);
+        //mp.erase(prefix_sum[i]-k);
     }
     cout<<ans<<endl;
     
