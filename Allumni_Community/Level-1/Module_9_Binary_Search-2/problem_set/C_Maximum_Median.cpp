@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n, t;
+int n, k;
 vector<int> vec;
 
 void input()
 {
-    cin >> n>>t;
+    cin >> n>>k;
     vec.resize(n);
 
     for (int i = 0; i < n; i++)
@@ -17,35 +17,37 @@ void input()
 void solve()
 {
     input();
-
-    auto ok = [&](long long time)
+    sort(vec.begin(),vec.end());
+    
+    auto ok = [&](int median)
     {
         long long cnt = 0;
-
-        for(int i=0;i<n; i++)
-        {
-            cnt+=(time/vec[i]);
-            if(cnt>=t)
-                return true;
-        }
-        return false;
+        for(int i=(n/2); i<n; i++)
+            cnt+=max(0, median-vec[i]);
+        
+        return cnt<=k;
     };
 
-    long long l=1, r = 1e18, mid, ans=0;
+    int l=1, r= 2e9, mid;
+    long long ans = 0;
 
-    while (l<=r)
+    while ((l<=r))
     {
-        mid = l + (r-l)/2;
+        mid = l+ (r-l)/2;
 
         if(ok(mid))
         {
             ans = mid;
-            r = mid-1;
+            l = mid+1;
         }
         else
-            l=mid+1;
+            r = mid-1;
+
     }
     cout<<ans<<endl;
+    
+    
+    
 }
 
 int main()
