@@ -1,67 +1,70 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
 using namespace std;
 
-set<int>all_prime;
-set<int>prime_multi;
+const int MAXN = 1001;
 
-void prime()
-{
-    for(int i=2; i<=1000; i++)
-    {
-        bool pr = true;
-        for(int j=2; (j*j)<=i; j++)
-        {
-            if(i%j==0)  pr = false;
-        }
-        if(pr)  all_prime.insert(i);
+int main() {
+    string s;
+    getline(cin, s);
+    int n = s.length();
+
+    vector<int> freq(256, 0);
+    for (char ch : s) {
+        freq[ch]++;
     }
-    for(auto x: all_prime)
-    {
-        for(int i=1; i<=500; i++)
-        {
-            if(x*i<=1000)   prime_multi.insert(x*i);
+
+    // Find the character with maximum frequency
+    int maxChar = 0;
+    for (int i = 0; i < 256; i++) {
+        if (freq[i] > freq[maxChar]) {
+            maxChar = i;
         }
     }
-}
 
-int main()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    prime();
-    string str;
-    cin>>str;
-
-    int n = str.size();
-    deque<int>ans;
-    for(auto x: prime_multi)
-    {
-        if(x<=n)
-            ans.push_back(x);
-    }
-
-    map<char, int>mp;
-    for(auto x: str)
-        mp[x]++;
-
-    
-    bool ch = false;
-    char check;
-    for(auto x: mp)
-    {
-        if(x.second>=ans.size())
-        {
-            ch = true;
-            check = x.first;
+    // Sieve to mark "special" positions (non f[i] = not prime or i=1 or i*2<=n)
+    vector<bool> isGood(n + 1, true);
+    for (int i = 2; i * i <= n; i++) {
+        if (isGood[i]) {
+            for (int j = i * i; j <= n; j += i) {
+                isGood[j] = false;
+            }
         }
     }
-    if(!ch) cout<<"NO"<<endl;
-    else    cout<<"YES"<<endl;
 
+    isGood[1] = true;
+    for (int i = 2; i + i <= n; i++) {
+        isGood[i] = false;
+    }
 
+    // First, assign maxChar to all not-good positions
+    string result = s;
+    for (int i = 1; i <= n; i++) {
+        if (!isGood[i]) {
+            if (freq[maxChar] == 0) {
+                cout << "NO" << endl;
+                return 0;
+            }
+            result[i - 1] = char(maxChar);
+            freq[maxChar]--;
+        }
+    }
 
+    // Then fill the good positions with remaining characters
+    int ch = 0;
+    for (int i = 1; i <= n; i++) {
+        if (isGood[i]) {
+            while (freq[ch] == 0) ch++;
+            result[i - 1] = char(ch);
+            freq[ch]--;
+        }
+    }
+
+    cout << "YES" << endl;
+    cout << result << endl;
 
     return 0;
 }
-
