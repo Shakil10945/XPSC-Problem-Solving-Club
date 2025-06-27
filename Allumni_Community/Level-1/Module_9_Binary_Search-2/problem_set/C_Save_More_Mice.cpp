@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int k, n;
+int k,n;
 vector<int> vec;
 
 void input()
 {
-    cin >>k>>n;
+    cin>>k >> n;
     vec.resize(n);
 
     for (int i = 0; i < n; i++)
@@ -19,45 +19,32 @@ void solve()
     input();
 
     sort(vec.begin(),vec.end());
-    
 
     auto ok = [&](int mid)
     {
-        int cnt =0;
-        for(int i=n-1; i>=mid; i--)
-            cnt+=(k-vec[i]);
-
-        return (cnt<=(vec[mid]));
+        long long total = 0;
+        for(int i=mid; i<n; i++)
+            total += (k-vec[i]);
+        return total<k;
     };
 
 
-    int l = 0, r=n-1, mid, ans;
-
+    int l = 0, r= n-1, ans=0, mid;
     while (l<=r)
     {
-        
-        mid= l + (r-l)/2;
-        //cout<<mid<<" ";
+        mid = l+(r-l)/2;
 
         if(ok(mid))
         {
-            ans =  n-mid;
+            ans= n-mid;
             r = mid-1;
-
         }
         else
-            l = mid+1;
+            l= mid+1;
 
     }
-    cout<<ans<<endl;
     
-
-
-
-
-
-    
-    
+    cout<<ans<<endl;    
 }
 
 int main()
