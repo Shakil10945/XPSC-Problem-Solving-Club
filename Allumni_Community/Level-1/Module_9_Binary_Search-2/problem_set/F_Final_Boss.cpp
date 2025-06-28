@@ -28,22 +28,15 @@ void solve()
         if(cnt>=h)  return true;
         for(int i=0; i<n; i++)
         {
+            //cnt += (mid-1)/c[i]*vec[i];
             long long times = (mid-1)/c[i];
-
-            if(times> (h-cnt+vec[i]-1)/vec[i])
+            if(times>=(h-cnt+vec[i]-1)/vec[i])
                 return true;
-            if(times*vec[i]> h- cnt)
-                cnt = h;
-            else
-                cnt +=times*vec[i];
-            if(cnt>=h)  return true;
+            cnt +=times*vec[i];
         }
         return cnt>=h;
     };
-
-
-
-
+    
     long long l = 1, r = 1e18, mid, ans;
 
     while(l<=r)

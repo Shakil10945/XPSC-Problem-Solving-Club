@@ -1,50 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        int n, k;   cin>>n>>k;
-
-        
-        
-
-        int l = 0, r= n-1, mid;
-        long long  ans =0;
-        auto ok = [&](int mid)
-        {
-            long long left = (((k+mid)*(k+mid-1)*1LL)/2) -( ((k+l-1)*(k+l-2)*1LL)/2);
-            long long right = ((k+r)*(k+r-1)/2) - ((k+mid-1)*(k+mid-2)/2);
-
-            if(left-right>=0)
-            {
-                ans = left-right;
-            }
-
-            return (left-right>=0);
-
-        };
-        while(l<=r)
-        {
-            mid = l+(r-l)/2;
-
-            if(ok(mid))
-            {
-                r= mid-1;
-            }
-            else
-                l = mid+1;
-
-        }
-        cout<<ans<<endl;
-    }
-
-    return 0;
+pair<long long, long long> val(long long mid, long long n, long long k) {
+    long long val1 = (mid + k - 1 + k) * mid / 2;
+    long long total = (k + n - 1 + k) * n / 2;
+    long long val2 = total - val1;
+    return {val1, val2};
 }
 
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        long long n, k;
+        cin >> n >> k;
+        long long lo = 1, hi = n, curr = 1;
+        while (lo <= hi) {
+            long long mid = (lo + hi) / 2;
+            auto [a, b] = val(mid, n, k);
+            if (b > a) {
+                curr = mid;
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        auto [a1, b1] = val(curr, n, k);
+        auto [a2, b2] = val(curr + 1, n, k);
+        cout << min(b1 - a1, b2 - a2) << endl;
+    }
+    return 0;
+}
