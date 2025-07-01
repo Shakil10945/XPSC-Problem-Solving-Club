@@ -15,6 +15,8 @@ int main()
 
         if(x==1)
         {
+
+            
             if(k==2)
                 cout<<"YES"<<endl;
             else
