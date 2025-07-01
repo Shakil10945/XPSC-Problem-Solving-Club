@@ -13,6 +13,9 @@ int main()
         int x,k;
         cin>>x>>k;
 
+
+        for(int i=0)
+
         if(x==1)
         {
 
