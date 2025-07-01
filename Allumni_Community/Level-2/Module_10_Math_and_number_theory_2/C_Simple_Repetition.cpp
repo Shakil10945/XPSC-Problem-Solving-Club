@@ -16,11 +16,13 @@ int main()
         if(x==1)
         {
 
-            
+
             if(k==2)
                 cout<<"YES"<<endl;
             else
                 cout<<"NO"<<endl;
+
+            
             continue;
         }
         if(k>1)
