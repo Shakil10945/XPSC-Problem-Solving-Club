@@ -13,10 +13,10 @@ void sieve()
         if(!comp[i])
             for(int j=i*i; j<=maxN; j+=i)
                 comp[j] = true;
-        for(int i=2; i<=maxN; i++)
-            if(!comp[i])
-                primes.push_back(i);
     }
+    for(int i=2; i<=maxN; i++)
+        if(!comp[i])
+            primes.push_back(i);
 }
 
 
