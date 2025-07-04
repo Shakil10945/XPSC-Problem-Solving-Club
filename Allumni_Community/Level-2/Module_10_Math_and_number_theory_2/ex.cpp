@@ -1,27 +1,55 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-int main() {
-   ios::sync_with_stdio(false);
-   cin.tie(nullptr);
+const int maxN = 1e5;
 
-   int n;
-   cin >> n;
-   vector<bool> prime(n + 1, true);
-   for (int i = 2;i * i <= n;i++) {
-      if (prime[i]) {
-         for (int j = i + i;j <= n;j += i) {
-            prime[j] = false;
-         }
-      }
-   }
+vector<bool>comp(maxN+1);
+vector<int>primes;
 
-   for (int i = 2;i <= n;i++) {
-      if (prime[i]) {
-         cout << i << " ";
-      }
-   }
-   cout << '\n';
+void sieve()
+{
+    for(int i=2; i*i<=maxN; i++)
+    {
+        if(!comp[i])
+            for(int j=i*i; j<=maxN; j+=i)
+                comp[j] = true;
+    }
+    for(int i=2; i<=maxN; i++)
+        if(!comp[i])
+            primes.push_back(i);
+}
 
-   return 0;
+
+void solve()
+
+{
+    int n;  cin>>n;
+    vector<int>p(n+1);
+
+    for(auto it = primes.rbegin(); it!=primes.rend(); ++it)
+    {
+        vector<int>cycle;
+        for(int i=*it; i<=n; i+=*it)
+            if(!p[i])
+                cycle.push_back(i);
+        
+        for(int i=0; i<cycle.size(); i++)
+            p[cycle[i]]= cycle[(i+1)%cycle.size()];
+    }
+    for(int i=1; i<=n; i++)
+        if(!p[i])
+            p[i]=i;
+
+    for(int i=1; i<=n; i++)
+        cout<<p[i]<<" ";
+    cout<<endl;
+}
+
+int main()
+{
+    sieve();
+    int t;
+    cin>>t;
+    while(t--)
+        solve();
 }
