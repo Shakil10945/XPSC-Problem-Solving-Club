@@ -1,55 +1,44 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+using ull = unsigned long long;
+using ll = long long;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
 
-const int maxN = 1e5;
-
-vector<bool>comp(maxN+1);
-vector<int>primes;
-
-void sieve()
-{
-    for(int i=2; i*i<=maxN; i++)
-    {
-        if(!comp[i])
-            for(int j=i*i; j<=maxN; j+=i)
-                comp[j] = true;
-    }
-    for(int i=2; i<=maxN; i++)
-        if(!comp[i])
-            primes.push_back(i);
-}
-
-
-void solve()
-
-{
-    int n;  cin>>n;
-    vector<int>p(n+1);
-
-    for(auto it = primes.rbegin(); it!=primes.rend(); ++it)
-    {
-        vector<int>cycle;
-        for(int i=*it; i<=n; i+=*it)
-            if(!p[i])
-                cycle.push_back(i);
-        
-        for(int i=0; i<cycle.size(); i++)
-            p[cycle[i]]= cycle[(i+1)%cycle.size()];
-    }
-    for(int i=1; i<=n; i++)
-        if(!p[i])
-            p[i]=i;
-
-    for(int i=1; i<=n; i++)
-        cout<<p[i]<<" ";
-    cout<<endl;
-}
-
-int main()
-{
-    sieve();
     int t;
-    cin>>t;
-    while(t--)
-        solve();
+    cin >> t;
+    while (t--) {
+        ll n, l, r, k;
+        cin >> n >> l >> r >> k;
+        // Case 1: n odd => answer = l
+        if (n % 2 == 1) {
+            // any odd-length array of all l works (AND = XOR = l)
+            cout << l << "\n";
+            continue;
+        }
+        // Case 2: n even
+        if (n == 2) {
+            // No solution for n=2 with positive l
+            cout << -1 << "\n";
+            continue;
+        }
+        // Find next power-of-two > l
+        // Compute highest set bit of l
+        int msb = 63 - __builtin_clzll((ull)l);
+        ull x = 1ULL << (msb + 1);
+        if (x > (ull)r) {
+            // No valid x in [l+1, r]
+            cout << -1 << "\n";
+            continue;
+        }
+        // Now the lexicographically smallest array is [l,...,l,x,x]
+        // If k is in the prefix of l's, answer is l; else x.
+        if (k <= n - 2) {
+            cout << l << "\n";
+        } else {
+            cout << x << "\n";
+        }
+    }
+    return 0;
 }
