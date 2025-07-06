@@ -1,50 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n;
-int px, py, qx, qy;
-vector<int> vec;
-
-void input() {
-    cin >> n;
-    cin >> px >> py >> qx >> qy;
-    vec.resize(n);
-    for (int i = 0; i < n; i++) {
-        cin >> vec[i];
-    }
-}
-
-void solve() {
-    input();
-
-    long long dx = qx - px;
-    long long dy = qy - py;
-    long double distance = sqrtl((long double)dx * dx + (long double)dy * dy);
-
-    long long total = accumulate(vec.begin(), vec.end(), 0LL);
-
-    if (distance > total + 1e-8L) {
-        cout << "No\n";
-        return;
-    }
-
-    long long d_round = (long long)roundl(distance);
-    if (((d_round % 2) + 2) % 2 != ((total % 2) + 2) % 2) {
-        cout << "No";
-        return;
-    }
-
-    cout << "Yes\n";
-}
-
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
 
     int t;
     cin >> t;
+
     while (t--) {
-        solve();
+        int n;
+        cin >> n;
+
+        int a, b, c, d;
+        cin >> a >> b >> c >> d;
+
+        vector<int> v(n);
+        long long sum = 0, max_val = 0;
+
+        for (int i = 0; i < n; ++i) {
+            cin >> v[i];
+            sum += v[i];
+            max_val = max(max_val, 1LL * v[i]);
+        }
+
+        long long dx = a - c;
+        long long dy = b - d;
+        long long dist_sq = dx * dx + dy * dy;
+
+        long long upper_bound = sum * sum;
+        long long lower_bound = 0;
+
+        if (n) {
+            lower_bound = max(0LL, max_val - (sum - max_val));
+            lower_bound *= lower_bound;
+        }
+
+        if (dist_sq >= lower_bound && dist_sq <= upper_bound)
+            cout << "Yes\n";
+        else
+            cout << "No\n";
     }
 
     return 0;
