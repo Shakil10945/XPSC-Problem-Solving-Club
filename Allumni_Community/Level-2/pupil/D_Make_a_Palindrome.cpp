@@ -38,7 +38,32 @@ void solve()
         return;
     }
 
+
+    multiset<int>ms;
+    for(int i=0; i<n; i++)
+    {
+        ms.insert(vec[i]);
+    }
+
+    int x = n-k+1;
+    while(x--)
+    {
+        ms.erase(--ms.end());
+    }
+
+    set<int>s(ms.begin(),ms.end());
+    map<int,set<int>>mp;
+    for(int i=0; i<n; i++)
+        mp[i].insert(i);
+
+    for(auto x: ms)
+    {
+        if(k-1%2==1 && )
+    }
     
+
+
+
     
     
 }
