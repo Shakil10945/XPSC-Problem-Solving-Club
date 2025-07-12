@@ -1,0 +1,47 @@
+module- 1
+1. vector
+2. string
+3. deque
+4. map
+5. priority queue
+
+module-2
+1. set
+2. multiset
+
+module - 3
+1. Two pointers and Fixed Windows
+
+module-4
+1. Two pointers and sliding Windows
+
+module - 5
+1. Bit manipulation
+
+module-6
+1. bit masking
+
+module-7
+1. math and numbe theory
+2. divisors
+3. gcd lcm
+4. prime test
+5. factors
+
+module-8
+1. binary searching
+
+module- 9
+1. monotonic function
+
+module- 10
+1. sieve()
+2. prime factorization using sieve()
+3. prime factorization using spf
+4. counting divisors
+
+module- 11
+1. Difference array
+2. PBDS
+
+

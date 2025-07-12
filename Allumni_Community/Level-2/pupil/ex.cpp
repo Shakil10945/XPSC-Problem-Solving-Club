@@ -1,38 +1,43 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int check_kth_bit_on_or_off(int n, int k) {
+   return (n >> k) & 1;
+}
+
+void print_on_and_off_bits(int n) {
+   for (int k = 30;k >= 0;k--) {
+      if (check_kth_bit_on_or_off(n, k)) {
+         cout << 1 << " ";
+      }
+      else {
+         cout << 0 << " ";
+      }
+   }
+}
+
+int turn_on_kth_bit(int n, int k) {
+   return (n | (1 << k));
+}
+
+int turn_off_kth_bit(int n, int k) {
+   return (n & (~(1 << k)));
+}
+
+int toggle_kth_bit(int n, int k) {
+   return (n ^ (1 << k));
+}
+
 int main() {
    ios::sync_with_stdio(false);
    cin.tie(nullptr);
 
-   int n;
-   long long k;
-   cin >> n >> k;
-   vector<int> a(n);
-   for (int i = 0;i < n;i++) {
-      cin >> a[i];
-   }
-
-   int l = 0, r = 0;
-   long long sum = 0, ans = 0;
-   while (r < n) {
-      sum += a[r];
-      if (sum <= k) {
-         ans += (r - l + 1);
-      }
-      else {
-         while (sum > k && l <= r) {
-            sum -= a[l];
-            l++;
-         }
-         if (sum <= k) {
-            ans += (r - l + 1);
-         }
-      }
-      r++;
-   }
-
-   cout << ans << '\n';
+   int n = 45;
+   // cout << check_kth_bit_on_or_off(n, 4) << '\n';
+   // print_on_and_off_bits(n);
+   // cout << turn_on_kth_bit(n, 2) << '\n';
+   // cout << turn_off_kth_bit(n, 3) << '\n';
+   cout << toggle_kth_bit(n, 5) << '\n';
 
    return 0;
 }
