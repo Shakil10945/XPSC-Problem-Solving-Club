@@ -5,26 +5,6 @@ using namespace __gnu_pbds;
 using namespace std;
 template <typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
-int n;
-vector<int> vec;
-
-void input()
-{
-    cin >> n;
-    vec.resize(n);
-
-    for (int i = 0; i < n; i++)
-       cin >> vec[i];
-    
-}
-
-void solve()
-{
-    input();
-    
-    
-}
-
 int main()
 {
     ios::sync_with_stdio(false);
@@ -33,7 +13,17 @@ int main()
     int t;
     cin >> t;
     while (t--)
-        solve();
+    {
+        int n , m;
+        cin>>n>>m;
+        if(n==1 || m==1)
+        {
+            cout<<"NO"<<endl;
+            continue;
+        }
+        cout<<((n<3 && m<3)? "NO":"YES")<<endl;
+    }
 
     return 0;
 }
+

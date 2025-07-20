@@ -1,0 +1,10 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/shakil10945/XPSC-Problem-Solving-Club/Allumni_Community/Level-2/Module_11_Difference_Array_and_PBDS/A_Only_One_Digit'
+relocations:
+  - { offset: 0x1605F, size: 0x8, addend: 0x0, symName: __ZStL8__ioinit, symObjAddr: 0x61932, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offset: 0x1627A, size: 0x8, addend: 0x0, symName: __GLOBAL__sub_I_A_Only_One_Digit.cpp, symObjAddr: 0x110, symBinAddr: 0x1000007A8, symSize: 0x14 }
+  - { offset: 0x16291, size: 0x8, addend: 0x0, symName: __Z41__static_initialization_and_destruction_0v, symObjAddr: 0xD4, symBinAddr: 0x10000076C, symSize: 0x3C }
+  - { offset: 0x162A8, size: 0x8, addend: 0x0, symName: __ZSt5__gcdIiET_S0_S0_, symObjAddr: 0x78, symBinAddr: 0x100000718, symSize: 0x54 }
+  - { offset: 0x16312, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000006A0, symSize: 0x78 }
+...
