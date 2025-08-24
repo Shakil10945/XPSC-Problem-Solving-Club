@@ -86,7 +86,6 @@ int main()
         long long k;
         cin >> k;
 
-        
         long long lo = 0, hi = (long long)1e15;
 
         while (lo < hi) 

@@ -5,14 +5,12 @@ int n, m;
 vector<int> eu;
 vector<int> ev;
 vector<vector<pair<int, int>>> adj;
-
 int qcnt;
 vector<int> queries;
 
 void input()
 {
     cin >> n >> m;
-
     eu.assign(m + 1, 0);
     ev.assign(m + 1, 0);
     adj.assign(n + 1, {});
@@ -23,7 +21,6 @@ void input()
         cin >> u >> v;
 
         eu[i] = u;
-
         ev[i] = v;
 
         adj[u].push_back({v, i});
@@ -40,7 +37,7 @@ void input()
 int timer_dfs;
 vector<int> tin;
 vector<int> low;
-vector<char> vis;
+vector<int> vis;
 vector<char> isBridge;
 
 void dfs_bridges(int u, int pe)
@@ -55,10 +52,10 @@ void dfs_bridges(int u, int pe)
 
         if (vis[v])
             low[u] = min(low[u], tin[v]);
-
         else
         {
             dfs_bridges(v, id);
+
             low[u] = min(low[u], low[v]);
 
             if (low[v] > tin[u])
@@ -80,7 +77,9 @@ void solve()
     low.assign(n + 1, 0);
     vis.assign(n + 1, 0);
     isBridge.assign(m + 1, 0);
+
     timer_dfs = 0;
+
     for (int i = 1; i <= n; ++i)
         if (!vis[i])
             dfs_bridges(i, -1);
@@ -88,11 +87,10 @@ void solve()
     comp.assign(n + 1, 0);
     int compCnt = 0;
 
-    for (int i = 1; i <= n; ++i)
+    for (int i = 1; i <= n; i++)
     {
         if (comp[i])
             continue;
-
         compCnt++;
 
         stack<int> st;
@@ -100,15 +98,16 @@ void solve()
         st.push(i);
 
         comp[i] = compCnt;
+
         while (!st.empty())
         {
             int u = st.top();
             st.pop();
+
             for (auto [v, id] : adj[u])
             {
                 if (isBridge[id])
                     continue;
-
                 if (!comp[v])
                 {
                     comp[v] = compCnt;
@@ -123,8 +122,6 @@ void solve()
         for (int i = 0; i < qcnt; ++i)
             cout << -1 << " ";
         cout << endl;
-
-        return;
     }
 
     vector<vector<pair<int, int>>> tree(compCnt + 1);
@@ -140,19 +137,20 @@ void solve()
         }
     }
 
-    vector<int> parent(compCnt + 1, -1), parentEdge(compCnt + 1, -1);
+    vector<int> parent(compCnt+1,-1), parentEdge(compCnt+1, -1);
     queue<int> q;
 
     q.push(comp[1]);
     parent[comp[1]] = comp[1];
 
-    while (!q.empty())
+    while(!q.empty())
     {
         int u = q.front();
         q.pop();
-        for (auto [v, id] : tree[u])
+
+        for(auto [v, id]: tree[u])
         {
-            if (parent[v] == -1)
+            if(parent[v] == -1)
             {
                 parent[v] = u;
                 parentEdge[v] = id;
@@ -161,54 +159,56 @@ void solve()
         }
     }
 
-    vector<int> pathBridges;
+    vector<int> pathBrides;
     int cur = comp[n];
-    while (cur != comp[1])
+
+    while(cur!= comp[1])
     {
         int e = parentEdge[cur];
-        pathBridges.push_back(e);
+        pathBrides.push_back(e);
         cur = parent[cur];
     }
 
-    distToSeed.assign(n + 1, INF);
-    chosenBridgeIdx.assign(n + 1, INF);
-    deque<int> dq;
+    distToSeed.assign(n+1, INF);
+    chosenBridgeIdx.assign(n+1, INF);
+    deque<int>dq;
 
-    for (int id : pathBridges)
+    for(int id: pathBrides)
     {
         int a = eu[id], b = ev[id];
-        if (distToSeed[a] > 0 || (distToSeed[a] == 0 && chosenBridgeIdx[a] > id))
+        if(distToSeed[a] > 0 || (distToSeed[a]==0 && chosenBridgeIdx[a]>id))
         {
-            distToSeed[a] = 0;
+            distToSeed[a]= 0;
             chosenBridgeIdx[a] = min(chosenBridgeIdx[a], id);
             dq.push_back(a);
         }
 
-        if (distToSeed[b] > 0 || (distToSeed[b] == 0 && chosenBridgeIdx[b] > id))
+        if(distToSeed[b]>0 || (distToSeed[b]==0 && chosenBridgeIdx[b]> id))
         {
             distToSeed[b] = 0;
-            chosenBridgeIdx[b] = min(chosenBridgeIdx[b], id);
+            chosenBridgeIdx[b]= min(chosenBridgeIdx[b],id);
             dq.push_back(b);
         }
     }
 
-    while (!dq.empty())
+    while(!dq.empty())
     {
         int u = dq.front();
         dq.pop_front();
 
-        for (auto [v, id] : adj[u])
+        for(auto [v,id]: adj[u])
         {
-            int nd = distToSeed[u] + 1;
+            int nd = distToSeed[u] +1;
             int chosen = chosenBridgeIdx[u];
-            if (distToSeed[v] > nd)
+
+            if(distToSeed[v] >nd)
             {
                 distToSeed[v] = nd;
                 chosenBridgeIdx[v] = chosen;
                 dq.push_back(v);
             }
 
-            else if (distToSeed[v] == nd && chosen < chosenBridgeIdx[v])
+            else if( distToSeed[v]== nd && chosen < chosenBridgeIdx[v])
             {
                 chosenBridgeIdx[v] = chosen;
                 dq.push_back(v);
@@ -216,17 +216,18 @@ void solve()
         }
     }
 
-    for (int i = 0; i < qcnt; ++i)
+    for(int i=0; i<qcnt; i++)
     {
-        if (i)
-            cout << ' ';
+        if(i)
+            cout<<' ';
         int c = queries[i];
-        if (chosenBridgeIdx[c] == INF)
-            cout << -1;
+        if(chosenBridgeIdx[c] == INF)
+            cout<<-1;
         else
-            cout << chosenBridgeIdx[c];
+            cout<<chosenBridgeIdx[c];
     }
-    cout << endl;
+    cout<<endl;
+
 }
 
 int main()
@@ -238,5 +239,6 @@ int main()
     cin >> t;
     while (t--)
         solve();
+
     return 0;
 }

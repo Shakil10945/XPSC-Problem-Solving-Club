@@ -38,7 +38,6 @@ int main() {
 
         int maxI = (int)a.size() - 1;
 
-
         long long D = 0;
 
         for (auto v : a)    D += v;
