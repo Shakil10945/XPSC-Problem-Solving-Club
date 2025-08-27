@@ -1,48 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> allPrimes = { 2,3, 5 ,7 ,11, 13, 17, 19, 23, 29, 31 };
-
 int main() {
    ios::sync_with_stdio(false);
    cin.tie(nullptr);
 
-   int t;
-   cin >> t;
-   while (t--) {
-      int n;
-      cin >> n;
-      vector<int> a(n);
-      for (int i = 0;i < n;i++) {
-         cin >> a[i];
-      }
-
-      map<int, vector<int>> mp;
-
-      for (int i = 0;i < n;i++) {
-         for (int j = 0;j < 11;j++) {
-            if (a[i] % allPrimes[j] == 0) {
-               mp[allPrimes[j]].push_back(i);
-               break;
-            }
-         }
-      }
-
-      vector<int> ans(n);
-      int color = 1;
-      for (auto [x, y] : mp) {
-         for (auto pos : y) {
-            ans[pos] = color;
-         }
-         color++;
-      }
-
-      cout << mp.size() << '\n';
-      for (int i = 0;i < n;i++) {
-         cout << ans[i] << " ";
-      }
-      cout << '\n';
+   int n, q;
+   cin >> n >> q;
+   vector<int> a(n);
+   for (int i = 0;i < n;i++) {
+      cin >> a[i];
    }
 
+   for (int i = 0;i < q;i++) {
+      int key, l = 0, r = n - 1, mid;
+      cin >> key;
+      bool found = false;
+      while (l <= r) {
+         mid = (l + r) / 2;
+         if (key == a[mid]) {
+            found = true;
+            break;
+         }
+         else if (key < a[mid]) {
+            r = mid - 1;
+         }
+         else {
+            l = mid + 1;
+         }
+      }
+      if (found) {
+         cout << "YES" << '\n';
+      }
+      else {
+         cout << "NO" << '\n';
+      }
+   }
    return 0;
 }
