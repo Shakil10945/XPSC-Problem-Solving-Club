@@ -1,50 +1,78 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <functional>
+#include <iostream>
+#include <vector>
 using namespace std;
-
-const int N = 20;
-int n, m, dis[N][N];
-bool vis[N][N];
-char g[N][N];
-vector<pair<int, int>> d = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
-
-bool valid(int i, int j)
-{
-    return (i >= 0 && i < n && j >= 0 && j < m);
-}
-
-void bfs(int si, int sj)
-{
-    queue<pair<int, int>> q;
-    q.push({si, sj});
-    vis[si][sj] = 1;
-    dis[si][sj] = 0;
-    while (!q.empty())
-    {
-        auto [x, y] = q.front();
-        q.pop();
-        for (auto [dx, dy] : d)
-        {
-            int nx = x + dx, ny = y + dy;
-            if (valid(nx, ny) && !vis[nx][ny])
-            {
-                vis[nx][ny] = 1;
-                dis[nx][ny] = dis[x][y] + 1;
-                q.push({nx, ny});
-            }
-        }
-    }
-}
 
 int main()
 {
-    cin >> n >> m;
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
-            cin >> g[i][j];
-    int si, sj;
-    cin >> si >> sj;
-    memset(vis, 0, sizeof(vis));
-    memset(dis, -1, sizeof(dis));
-    bfs(si, sj);
-    cout << dis[2][3] << "\n";
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        vector<vector<int>> G(n);
+        for (int i = 0; i < n - 1; i++)
+        {
+            int u, v;
+            cin >> u >> v;
+            u--, v--;
+            G[u].push_back(v);
+            G[v].push_back(u);
+        }
+
+        vector<int> dist(n), p(n);
+        function<void(int, int)> dfs = [&](int now, int par)
+        {
+            p[now] = par;
+            for (int i : G[now])
+            {
+                if (i != par)
+                {
+                    dist[i] = dist[now] + 1;
+                    dfs(i, now);
+                }
+            }
+        };
+
+        dist[0] = 0;
+        dfs(0, -1);
+        int x = max_element(dist.begin(), dist.end()) - dist.begin();
+        dist[x] = 0;
+        dfs(x, -1);
+        int y = max_element(dist.begin(), dist.end()) - dist.begin();
+
+        if (dist[y] == n - 1)
+        {
+            cout << -1 << '\n';
+        }
+        else
+        {
+            vector<int> on_diameter(n);
+            int now = y;
+            while (now != -1)
+            {
+                on_diameter[now] = 1;
+                now = p[now];
+            }
+            int a = -1, b = -1, c = -1;
+            for (int u = 0; u < n; u++)
+            {
+                for (int v : G[u])
+                {
+                    if (on_diameter[u] && !on_diameter[v])
+                    {
+                        a = p[u], b = u, c = v;
+                        break;
+                    }
+                }
+                if (a != -1)
+                    break;
+            }
+            cout << a + 1 << ' ' << b + 1 << ' ' << c + 1 << '\n';
+        }
+    }
 }

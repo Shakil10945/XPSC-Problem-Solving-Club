@@ -13,8 +13,8 @@ void bfs(int src)
     q.push(src);
     vis[src] = true;
     level[src] = 0;
-    parent[src] = -1; // source has no parent
-
+    parent[src] = -1;
+    
     while (!q.empty())
     {
         int par = q.front();
